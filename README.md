@@ -2,7 +2,7 @@
 
 Launch the code in this repo in a free GPU powered Gradient Notebook using the button below!
 
-[![Gradient](https://assets.paperspace.io/img/gradient-badge.svg)](https://console.paperspace.com/github/gradient-ai/stable-diffusion/blob/main/stable-diffusion-notebook.ipynb?machine=Free-GPU)
+[![Gradient](https://assets.paperspace.io/img/gradient-badge.svg)](https://console.paperspace.com/github/gradient-ai/dreambooth-stable-diffusion/blob/main/sd_dreambooth_gradient.ipynb?machine=Free-GPU)
 
 All credit to @JoePenna for the original project and repo. To run Stable Diffusion with Gradient, please visit the official [fork](https://github.com/gradient-ai/stable-diffusion)
 
