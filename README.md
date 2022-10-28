@@ -1,3 +1,10 @@
+## This fork is optimized to run on Paperspace Gradient
+
+Launch the code in this repo in a free GPU powered Gradient Notebook using the button below!
+[![Gradient](https://assets.paperspace.io/img/gradient-badge.svg)](https://console.paperspace.com/github/gradient-ai/stable-diffusion/blob/main/stable-diffusion-notebook.ipynb?machine=Free-GPU)
+
+All credit to @JoePenna for the original project and repo. To run Stable Diffusion with Gradient, please visit the official [fork](https://github.com/gradient-ai/stable-diffusion)
+
 # Index
 
 - [Notes by Joe Penna](#notes-by-joe-penna)
@@ -13,13 +20,16 @@
 - [Hugging Face Diffusers](#hugging-face-diffusers)
 
 # The Repo Formerly Known As "Dreambooth"
+
 ![image](https://user-images.githubusercontent.com/100188076/192390551-cb89364f-af57-4aed-8f3d-f9eb9b61cf95.png)
 
-## <a name="notes-by-joe-penna"></a>  Notes by Joe Penna
+## <a name="notes-by-joe-penna"></a> Notes by Joe Penna
+
 ### **INTRODUCTIONS!**
+
 Hi! My name is Joe Penna.
 
-You might have seen a few YouTube videos of mine under *MysteryGuitarMan*. I'm now a feature film director. You might have seen [ARCTIC](https://www.youtube.com/watch?v=N5aD9ppoQIo&t=6s) or [STOWAWAY](https://www.youtube.com/watch?v=A_apvQkWsVY).
+You might have seen a few YouTube videos of mine under _MysteryGuitarMan_. I'm now a feature film director. You might have seen [ARCTIC](https://www.youtube.com/watch?v=N5aD9ppoQIo&t=6s) or [STOWAWAY](https://www.youtube.com/watch?v=A_apvQkWsVY).
 
 For my movies, I need to be able to train specific actors, props, locations, etc. So, I did a bunch of changes to @XavierXiao's repo in order to train people's faces.
 
@@ -34,16 +44,17 @@ This is no longer my repo. This is the people-who-wanna-see-Dreambooth-on-SD-wor
 Now, if you wanna try to do this... please read the warnings below first:
 
 ### **WARNING!**
+
 - **This is bleeding edge stuff**... there is currently no easy way to run this. This repo is based on a repo based on another repo.
+
   - At the moment, it takes a LOT of effort to create something that's basically duct tape and bubble gum -- but eventually works SUPER well.
   - Step in, please! Don't let that scare ya -- but please know that you're wading through the jungle at night, with no torch...
 
 - Unfreezing the model takes a lot of juice.
   - ~~You're gonna need an A6000 / A40 / A100 (or similar top-of-the-line thousands-of-dollars GPU).~~
-  - You can now run this on a GPU with 24GB of VRAM (e.g. 3090). Training will be slower, and you'll need to be sure this is the *only* program running.
-  - If, like myself, you don't happen to own one of those, I'm including a Jupyter notebook here to help you run it on a rented cloud computing platform. 
+  - You can now run this on a GPU with 24GB of VRAM (e.g. 3090). Training will be slower, and you'll need to be sure this is the _only_ program running.
+  - If, like myself, you don't happen to own one of those, I'm including a Jupyter notebook here to help you run it on a rented cloud computing platform.
   - It's currently tailored to [runpod.io](https://runpod.io?ref=n8yfwyum), but can work on [vast.ai](#vast-ai-setup) / etc.
-  
 - This implementation does not fully implement Google's ideas on how to preserve the latent space.
 
   - Most images that are similar to what you're training will be shifted towards that.
@@ -51,19 +62,20 @@ Now, if you wanna try to do this... please read the warnings below first:
 
 - There doesn't seem to be an easy way to train two subjects consecutively. You will end up with an `11-12GB` file before pruning.
   - The provided notebook has a pruner that crunches it down to `~2gb`
-  
-- Best practice is to change the **token** to a celebrity name (*note: token, not class* -- so your prompt would be something like: `Chris Evans person`). Here's [my wife trained with the exact same settings, except for the token](#using-the-generated-model)
-
+- Best practice is to change the **token** to a celebrity name (_note: token, not class_ -- so your prompt would be something like: `Chris Evans person`). Here's [my wife trained with the exact same settings, except for the token](#using-the-generated-model)
 
 # <a name="setup"></a> Setup
+
 ## <a name="easy-runpod-instructions"></a> Easy RunPod Instructions
+
 - Sign up for RunPod. Feel free to use my [referral link here](https://runpod.io?ref=n8yfwyum), so that I don't have to pay for it (but you do).
 - Click **Deploy** on either `SECURE CLOUD` or `COMMUNITY CLOUD`
 - Follow these video instructions here:
 
 [![VIDEO INSTRUCTIONS](https://img.youtube.com/vi/7m__xadX0z0/0.jpg)](https://www.youtube.com/watch?v=7m__xadX0z0#t=5m33.1s)
 
-## <a name="vast-ai-setup"></a>  Vast.AI Instructions
+## <a name="vast-ai-setup"></a> Vast.AI Instructions
+
 - Sign up for [Vast.AI](https://vast.ai/)
 - Add some funds (I typically add them in $10 increments)
 - Navigate to the [Client - Create page](https://vast.ai/console/create/)
@@ -86,28 +98,29 @@ Now, if you wanna try to do this... please read the warnings below first:
   - ![img.png](readme-images/vast-ai-step6-open-notebook.png)
 - Follow the instructions in the workbook and start training
 
-# <a name="text-vs-dreamb"></a>  Textual Inversion vs. Dreambooth
+# <a name="text-vs-dreamb"></a> Textual Inversion vs. Dreambooth
+
 The majority of the code in this repo was written by Rinon Gal et. al, the authors of the Textual Inversion research paper. Though a few ideas about regularization images and prior loss preservation (ideas from "Dreambooth") were added in, out of respect to both the MIT team and the Google researchers, I'm renaming this fork to:
-*"The Repo Formerly Known As "Dreambooth""*.
+_"The Repo Formerly Known As "Dreambooth""_.
 
 For an alternate implementation , please see ["Alternate Option"](#hugging-face-diffusers) below.
 
-
 # <a name="using-the-generated-model"></a> Using the generated model
+
 The `ground truth` (real picture, caution: very beautiful woman)
 <br><img src="https://user-images.githubusercontent.com/100188076/192403948-8d1d0e50-3e9f-495f-b8ba-1bcb6b536fc8.png" width="200">
 
 Same prompt for all of these images below:
 
-| `sks person` | `woman person` | `Natalie Portman person` | `Kate Mara person` |
-| ----- | ------- | ----------------- | ----------- |
-| <img src="https://user-images.githubusercontent.com/100188076/192403506-ab96c652-f7d0-47b0-98fa-267defa1e511.png" width="200"> | <img src="https://user-images.githubusercontent.com/100188076/192403491-cb258777-5091-4492-a6cc-82305fa729f4.png" width="200"> | <img src="https://user-images.githubusercontent.com/100188076/192403437-f9a93720-d41c-4334-8901-fa2d2a10fe36.png" width="200"> | <img src="https://user-images.githubusercontent.com/100188076/192403461-1f6972d9-64d0-46b0-b2ed-737e47aae31e.png" width="200"> |   
+| `sks person`                                                                                                                   | `woman person`                                                                                                                 | `Natalie Portman person`                                                                                                       | `Kate Mara person`                                                                                                             |
+| ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| <img src="https://user-images.githubusercontent.com/100188076/192403506-ab96c652-f7d0-47b0-98fa-267defa1e511.png" width="200"> | <img src="https://user-images.githubusercontent.com/100188076/192403491-cb258777-5091-4492-a6cc-82305fa729f4.png" width="200"> | <img src="https://user-images.githubusercontent.com/100188076/192403437-f9a93720-d41c-4334-8901-fa2d2a10fe36.png" width="200"> | <img src="https://user-images.githubusercontent.com/100188076/192403461-1f6972d9-64d0-46b0-b2ed-737e47aae31e.png" width="200"> |
 
 # <a name="debugging-your-results"></a> Debugging your results
+
 ### ❗❗ THE NUMBER ONE MISTAKE PEOPLE MAKE ❗❗
 
 **Prompting with just your token. ie "joepenna" instead of "joepenna person"**
-
 
 If you trained with `joepenna` under the class `person`, the model should only know your face as:
 
@@ -118,11 +131,13 @@ joepenna person
 Example Prompts:
 
 🚫 Incorrect (missing `person` following `joepenna`)
+
 ```
 portrait photograph of joepenna 35mm film vintage glass
 ```
 
 ✅ This is right (`person` is included after `joepenna`)
+
 ```
 portrait photograph of joepenna person 35mm film vintage glass
 ```
@@ -157,10 +172,9 @@ It should be `<token> <class>`, not just `<token>`. For example:
 
 `JoePenna person, portrait photograph, 85mm medium format photo`
 
-
 If it still doesn't look like you, you didn't train long enough.
 
-----
+---
 
 #### <a name="they-sorta-look-like-you-but-exactly-like-your-training-images"></a> OPTION 2: They're looking like you, but are all looking like your training images. (Train for less steps, get better training images, fix with prompting)
 
@@ -170,8 +184,7 @@ No problem. We can fix that with the prompt. Stable Diffusion puts a LOT of meri
 
 `an exquisite portrait photograph, 85mm medium format photo of JoePenna person with a classic haircut`
 
-
-----
+---
 
 #### <a name="they-look-like-you-but-not-when-you-try-different-styles"></a> OPTION 3: They're looking like you, but not when you try different styles. (Train longer, get better training images)
 
@@ -180,7 +193,6 @@ You didn't train long enough...
 No problem. We can fix that with the prompt:
 
 `JoePenna person in a portrait photograph, JoePenna person in a 85mm medium format photo of JoePenna person`
-
 
 ### More tips and help here: [Stable Diffusion Dreambooth Discord](https://discord.com/invite/qbMuXBXyHA)
 
