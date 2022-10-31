@@ -2,11 +2,14 @@
 
 Launch the code in this repo in a free GPU powered Gradient Notebook using the button below!
 
-> Note: You will need at least 16 GB of GPU RAM to run this model training. The P5000, P6000, V100, V100-32G, RTX5000, A4000, A5000, A100, and A100-80G powered machines will all be able to run this training.
-> Change the url below where it says (YOUR-GPU-CHOICE) to any GPU offered by Paperspace.
-> https://console.paperspace.com/github/gradient-ai/dreambooth-stable-diffusion/blob/main/sd_dreambooth_gradient.ipynb?machine=(YOUR-GPU-CHOICE)
-
 [![Gradient](https://assets.paperspace.io/img/gradient-badge.svg)](https://console.paperspace.com/github/gradient-ai/dreambooth-stable-diffusion/blob/main/sd_dreambooth_gradient.ipynb?machine=P5000)
+
+### Tips for set up
+
+You will need at least 16 GB of GPU RAM to run this model training. The P5000, P6000, V100, V100-32G, RTX5000, A4000, A5000, A100, and A100-80G powered machines will all be able to run this training.
+
+Change the url below where it says (YOUR-GPU-CHOICE) to any GPU offered by Paperspace:
+`https://console.paperspace.com/github/gradient-ai/dreambooth-stable-diffusion/blob/main/sd_dreambooth_gradient.ipynb?machine=(YOUR-GPU-CHOICE)`
 
 All credit to @JoePenna for the original project and repo. To run Stable Diffusion with Gradient, please visit the official [fork](https://github.com/gradient-ai/stable-diffusion)
 
